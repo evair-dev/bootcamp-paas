@@ -16,6 +16,15 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "@database/*": ["src/database/*"],
+      "@entities/*": ["src/database/entities/*"],
+      "@interfaces/*": ["src/common/interfaces/*"],
+      "@dto/*": ["src/common/dto/*"],
+      "@graphql/*": ["src/graphql/*"],
+      "@modules/*": ["src/modules/*"],
+    }
   }
 }
