@@ -1,4 +1,3 @@
-import { ConfigService } from '@nestjs/config';
 import { dataSource as source } from '@/config/orm.config';
 
 export const postgresProvider = [

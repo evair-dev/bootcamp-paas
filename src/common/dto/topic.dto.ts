@@ -1,11 +1,6 @@
 import { IsString, IsOptional, IsEnum, IsDateString } from 'class-validator';
 import { Field, InputType, registerEnumType } from '@nestjs/graphql';
-
-export enum TopicStatus {
-  DONE = 'done',
-  TO_DO = 'to-do',
-  IN_PROGRESS = 'in-progress',
-}
+import { TopicStatus } from '@/common/enums';
 
 registerEnumType(TopicStatus, { name: 'TopicStatus' });
 

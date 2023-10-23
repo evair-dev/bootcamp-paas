@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
+import { Course } from '@entities/course.entity';
 
 @Entity('authors')
 export class Author {
@@ -10,4 +18,13 @@ export class Author {
 
   @Column('text')
   resume: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @OneToMany(() => Course, (course) => course.author)
+  courses: Course[];
 }

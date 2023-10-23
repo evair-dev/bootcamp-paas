@@ -1,44 +1,28 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { IsString, IsNumber, IsDate, IsOptional } from 'class-validator';
-import { CreateModuleDto, UpdateModuleDto } from './module.dto';
+import { IsString, IsOptional, IsInt } from 'class-validator';
 
 @InputType()
-export class CreateCourseDto {
+export class CourseCreateDto {
+  @Field()
+  @IsInt()
+  authorId: number;
+
   @Field()
   @IsString()
-  name: string;
-
-  @Field({ nullable: true })
-  @IsDate()
-  @IsOptional()
-  completedDate?: Date;
+  title: string;
 
   @Field()
-  @IsNumber()
-  progressPercentage: number;
-
-  @Field(() => [CreateModuleDto], { nullable: true })
-  modules?: CreateModuleDto[];
+  @IsString()
+  description: string;
 }
 
 @InputType()
-export class UpdateCourseDto {
+export class CourseUpdateDto {
   @Field({ nullable: true })
-  @IsString()
   @IsOptional()
-  name?: string;
+  title?: string;
 
   @Field({ nullable: true })
-  @IsDate()
   @IsOptional()
-  completedDate?: Date;
-
-  @Field({ nullable: true })
-  @IsNumber()
-  @IsOptional()
-  progressPercentage?: number;
-
-  @Field(() => [UpdateModuleDto], { nullable: true })
-  @IsOptional()
-  modules?: UpdateModuleDto[];
+  description?: string;
 }

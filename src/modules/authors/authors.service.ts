@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { DeleteResult, Repository } from 'typeorm';
-import { Author } from '@database/entities';
-import { AuthorDto } from '@/common/dto';
-import { IAuthor } from '@interfaces/index';
+
+import { Author, Course } from '@database/entities';
+import { AuthorCreateDto, AuthorUpdateDto } from '@/common/dto';
 
 @Injectable()
 export class AuthorService {
@@ -19,16 +19,27 @@ export class AuthorService {
     return this.authorRepository.findOne({ where: { id: id } });
   }
 
-  create(author: AuthorDto): Promise<Author> {
+  create(author: AuthorCreateDto): Promise<Author> {
+    console.log(author);
+    console.log('------------------------');
     return this.authorRepository.save(author);
   }
 
-  async update(id: number, author: AuthorDto): Promise<Author> {
+  async update(id: number, author: AuthorUpdateDto): Promise<Author> {
     await this.authorRepository.update(id, author);
     return this.findOne(id);
   }
 
   delete(id: number): Promise<DeleteResult> {
     return this.authorRepository.delete(id);
+  }
+
+  // Relation with Courses
+  async getCourses(authorId: number): Promise<Course[]> {
+    const author = await this.authorRepository.findOne({
+      where: { id: authorId },
+    });
+
+    return author.courses;
   }
 }

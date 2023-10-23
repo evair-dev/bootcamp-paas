@@ -1,7 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+
 import { AuthorType } from '@graphql/objects';
 import { AuthorService } from '@modules/authors/authors.service';
-import { AuthorDto } from '@/common/dto';
+import { AuthorCreateDto, AuthorUpdateDto } from '@/common/dto';
 
 @Resolver('Author')
 export class AuthorResolver {
@@ -18,12 +19,15 @@ export class AuthorResolver {
   }
 
   @Mutation(() => AuthorType, { name: 'createAuthor' })
-  async create(@Args('author') author: AuthorDto) {
+  async create(@Args('author') author: AuthorCreateDto) {
     return this.authorService.create(author);
   }
 
   @Mutation(() => AuthorType, { name: 'updateAuthor' })
-  async update(@Args('id') id: number, @Args('author') author: AuthorDto) {
+  async update(
+    @Args('id') id: number,
+    @Args('author') author: AuthorUpdateDto,
+  ) {
     return this.authorService.update(id, author);
   }
 

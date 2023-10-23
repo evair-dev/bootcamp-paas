@@ -9,6 +9,8 @@ import { AppService } from './app.service';
 import { TopicsModule } from '@/modules/topics/topics.module';
 import { ModulesModule } from '@modules/modules/modules.module';
 import { AuthorsModule } from '@modules/authors/authors.module';
+import { CourseModule } from './modules/course/course.module';
+import { CourseResolver } from '@graphql/resolvers/course.resolver';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { AuthorsModule } from '@modules/authors/authors.module';
     TopicsModule,
     ModulesModule,
     AuthorsModule,
+    CourseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
